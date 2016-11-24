@@ -1,6 +1,6 @@
 {
   "name": "identity-service",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "description": "manages auth and user data",
   "main": "server.js",
   "scripts": {

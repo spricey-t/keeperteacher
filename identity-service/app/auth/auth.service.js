@@ -11,6 +11,7 @@ var jwtSecret = config.get('jwt.secret');
 
 exports.authenticate = authenticate; // (email, password) -> { user, token }
 exports.authorize = authorize; // (user, desired group)
+exports.validatePassword = validatePassword; // (password) -> true / false
 exports.hashPassword = hashPassword; // (password)
 exports.comparePassword = comparePassword; // (cleartext, hashed)
 exports.generateToken = generateToken; // (userId)
@@ -52,6 +53,10 @@ function authorize(user, requiredGroup) {
 			reject({ err: 'unauthorized' });
 		}
 	});
+}
+
+function validatePassword(password) {
+	return password && password.length > 4 && password.length < 20;
 }
 
 function hashPassword(password) {

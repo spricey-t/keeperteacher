@@ -26,6 +26,7 @@ mongoose.connect(dbHost);
 
 /* Register Models */
 require('./users/user.model');
+require('./auth/credential.model');
 
 /* Load Controllers */
 var userController = require('./users/user.controller');
@@ -43,6 +44,8 @@ userRouter.use(authController.resolveToken);
 userRouter.use(authController.adminAuthz);
 userRouter.get('/', userController.listUsers);
 userRouter.post('/', userController.createUser);
+userRouter.put('/:userId', userController.updateUser);
+userRouter.delete('/:userId', userController.deleteUser);
 app.use(contextPath + servletPath + '/users', userRouter);
 
 /* Auth Routes */
