@@ -29,6 +29,11 @@ require('./users/user.model');
 var userController = require('./users/user.controller');
 var authController = require('./auth/auth.controller');
 
+app.use(function(req, res, next) {
+	req.bus = {};
+	next();
+});
+
 /* User Routes */
 app.route('/api/users')
 	.get(userController.listUsers)
@@ -37,6 +42,8 @@ app.route('/api/users')
 /* Auth Routes */
 app.route('/api/authenticate')
 	.post(authController.authenticate);
+app.route('/api/token/test')
+	.get(authController.resolveToken, authController.tokenTest);
 
 app.listen(port, function() {
 	winston.info('server started on port', port);

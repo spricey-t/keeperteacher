@@ -13,6 +13,7 @@ exports.authenticate = authenticate; // (email, password) -> { user, token }
 exports.hashPassword = hashPassword; // (password)
 exports.comparePassword = comparePassword; // (cleartext, hashed)
 exports.generateToken = generateToken; // (userId)
+exports.resolveToken = resolveToken; // (token) -> user
 
 
 function authenticate(email, password) {
@@ -72,3 +73,16 @@ function generateToken(userId) {
 	});
 }
 
+function resolveToken(token) {
+	return new Promise(function(resolve, reject) {
+		jwt.verify(token, jwtSecret, function(err, decoded) {
+			if(err) reject(err);
+			else {
+				User.findOne({ _id: decoded.userId }, '-password', function(err, user) {
+					if(err) reject(err);
+					else resolve(user);
+				});
+			}
+		});
+	});
+}
