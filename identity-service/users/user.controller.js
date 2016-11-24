@@ -10,6 +10,7 @@ exports.listUsers = function(req, res, next) {
 	})
 	.catch(function(err) {
 		winston.log('error', 'error listing users', err);
+		res.status(500).send(err);
 	});
 };
 

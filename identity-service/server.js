@@ -1,5 +1,6 @@
 
 /* Services */
+var winston = require('winston');
 var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
@@ -26,12 +27,17 @@ require('./users/user.model');
 
 /* Load Controllers */
 var userController = require('./users/user.controller');
+var authController = require('./auth/auth.controller');
 
 /* User Routes */
 app.route('/api/users')
 	.get(userController.listUsers)
 	.post(userController.createUser);
 
+/* Auth Routes */
+app.route('/api/authenticate')
+	.post(authController.authenticate);
+
 app.listen(port, function() {
-	console.log('listening on port ' + port);
+	winston.info('server started on port', port);
 });
