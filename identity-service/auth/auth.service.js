@@ -10,6 +10,7 @@ var jwtSecret = config.get('jwt.secret');
 
 
 exports.authenticate = authenticate; // (email, password) -> { user, token }
+exports.authorize = authorize; // (user, desired group)
 exports.hashPassword = hashPassword; // (password)
 exports.comparePassword = comparePassword; // (cleartext, hashed)
 exports.generateToken = generateToken; // (userId)
@@ -27,6 +28,7 @@ function authenticate(email, password) {
 					else {
 						generateToken(user.id)
 						.then(function(token) {
+							console.log(user);
 							user.password = undefined;
 							resolve({ user: user, token: token });
 						})
@@ -40,6 +42,16 @@ function authenticate(email, password) {
 				});
 			}
 		});
+	});
+}
+
+function authorize(user, requiredGroup) {
+	return new Promise(function(resolve, reject) {
+		if(user && user.groups && user.groups.indexOf(requiredGroup) > -1) {
+			resolve(requiredGroup);
+		} else {
+			reject({ err: 'unauthorized' });
+		}
 	});
 }
 

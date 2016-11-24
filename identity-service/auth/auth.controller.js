@@ -3,6 +3,25 @@
 var winston = require('winston');
 var authService = require('./auth.service');
 
+exports.requiresAuthn = function(req, res, next) {
+	var token = req.headers['x-auth-token'];
+	if(!token) {
+		res.status(403).send({ err: 'full authentication is required' });
+	} else {
+		req.bus.token = token;
+		next();
+	}
+};
+
+exports.adminAuthz = function(req, res, next) {
+	authService.authorize(req.bus.user, 'admin')
+	.then(function(group) {
+		next();
+	})
+	.catch(function(err) {
+		res.status(403).send(err);
+	});
+};
 
 exports.authenticate = function(req, res, next) {
 	authService.authenticate(req.body.email, req.body.password)
@@ -16,7 +35,11 @@ exports.authenticate = function(req, res, next) {
 };
 
 exports.resolveToken = function(req, res, next) {
-	authService.resolveToken(req.headers['x-auth-token'])
+	if(!req.bus.token) {
+		res.status(403).send({ err: 'cannot resolve missing token' });
+		return;
+	}
+	authService.resolveToken(req.bus.token)
 	.then(function(user) {
 		req.bus.user = user;
 		next();

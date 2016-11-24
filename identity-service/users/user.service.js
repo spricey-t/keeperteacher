@@ -11,7 +11,7 @@ exports.createUser = createUser;
 
 function findUserById(id) {
 	return new Promise(function(resolve, reject) {
-		User.findOne({ _id: id }, '-password -salt', function(err, res) {
+		User.findOne({ _id: id }, '-password', function(err, res) {
 			if(err) reject(err);
 			else resolve(res);
 		});
@@ -22,7 +22,7 @@ function listUsers() {
 	return new Promise(function(resolve, reject) {
 		User.find({})
 		.sort('firstName')
-		.select('-password -salt')
+		.select('-password')
 		.exec(function(err, users) {
 			if(err) reject(err);
 			else resolve(users);
@@ -35,10 +35,7 @@ function createUser(user) {
 		validatePassword(user.password)
 		.then(authService.hashPassword)
 		.then(function(hashedPassword) {
-
-			user.groups = ['standard']; // always force standard for now
 			user.password = hashedPassword;
-
 			var persisted = new User(user);
 			persisted.save(function(err) {
 				if(err) reject(err);

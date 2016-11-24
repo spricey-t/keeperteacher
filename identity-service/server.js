@@ -35,15 +35,20 @@ app.use(function(req, res, next) {
 });
 
 /* User Routes */
-app.route('/api/users')
-	.get(userController.listUsers)
-	.post(userController.createUser);
+var userRouter = express.Router();
+userRouter.use(authController.requiresAuthn);
+userRouter.use(authController.resolveToken);
+userRouter.use(authController.adminAuthz);
+userRouter.get('/', userController.listUsers);
+userRouter.post('/', userController.createUser);
+app.use('/api/users', userRouter);
 
 /* Auth Routes */
 app.route('/api/authenticate')
 	.post(authController.authenticate);
 app.route('/api/token/test')
 	.get(authController.resolveToken, authController.tokenTest);
+
 
 app.listen(port, function() {
 	winston.info('server started on port', port);
