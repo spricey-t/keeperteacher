@@ -4,7 +4,7 @@
 		"port": 8080
 	},
 	"db": {
-		"host": "mongodb://localhost/keeperteacher"
+		"host": "{{DB_HOST}}"
 	},
 	"jwt": {
 		"secret": "secretgoeshere"
