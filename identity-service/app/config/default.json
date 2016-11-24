@@ -1,10 +1,8 @@
 {
-
 	"server": {
 		"port": 8080
 	},
 	"db": {
-		"hosty": "{{DB_HOST}}",
 		"host": "mongodb://localhost/keeperteacher"
 	},
 	"jwt": {

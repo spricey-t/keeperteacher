@@ -4,12 +4,13 @@ var winston = require('winston');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 var config = require('config');
-var User = require('mongoose').model('user');
+var userService = require('../users/user.service');
+var credentialService = require('./credential.service');
 
 var jwtSecret = config.get('jwt.secret');
 
 
-exports.authenticate = authenticate; // (email, password) -> { user, token }
+exports.authenticate = authenticate; // (email, cleartextPassword) -> { user, token }
 exports.authorize = authorize; // (user, desired group)
 exports.validatePassword = validatePassword; // (password) -> true / false
 exports.hashPassword = hashPassword; // (password)
@@ -18,29 +19,30 @@ exports.generateToken = generateToken; // (userId)
 exports.resolveToken = resolveToken; // (token) -> user
 
 
-function authenticate(email, password) {
+function authenticate(email, cleartextPassword) {
 	return new Promise(function(resolve, reject) {
-		User.findOne({ email: email }, function(err, user) {
-			if(err) reject(err);
-			else {
-				comparePassword(password, user.password)
+		winston.log('in promise');
+		userService.findUserByEmail(email)
+		.then(function(user) {
+			winston.log('found user from email');
+			credentialService.getCredsForUser(user.id)
+			.then(function(creds) {
+				winston.log('found creds from user');
+				comparePassword(cleartextPassword, creds.password)
 				.then(function(isMatched) {
-					if(!isMatched) reject({ err: 'authentication failed' }); //todo replace with common error model
+					if(!isMatched) reject({ err: 'authentication failed' });
 					else {
+						winston.log('password matched');
 						generateToken(user.id)
 						.then(function(token) {
-							user.password = undefined;
 							resolve({ user: user, token: token });
-						})
-						.catch(function(err) {
-							reject(err);
 						});
 					}
-				})
-				.catch(function(err) {
-					reject(err);
 				});
-			}
+			});
+		})
+		.catch(function(err) {
+			reject(err);
 		});
 	});
 }
@@ -94,9 +96,12 @@ function resolveToken(token) {
 		jwt.verify(token, jwtSecret, function(err, decoded) {
 			if(err) reject(err);
 			else {
-				User.findOne({ _id: decoded.userId }, '-password', function(err, user) {
-					if(err) reject(err);
-					else resolve(user);
+				userService.findUserById(decoded.userId)
+				.then(function(user) {
+					resolve(user);
+				})
+				.catch(function(err) {
+					reject(err);
 				});
 			}
 		});

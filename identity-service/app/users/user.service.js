@@ -5,6 +5,7 @@ var authService = require('../auth/auth.service');
 var credentialService = require('../auth/credential.service');
 
 exports.findUserById = findUserById; // (userId) -> user
+exports.findUserByEmail = findUserByEmail // (email) -> user
 exports.listUsers = listUsers; // () -> [user]
 exports.saveUser = saveUser; // (user) -> user
 exports.deleteUser = deleteUser; // (user) -> user
@@ -14,6 +15,15 @@ exports.deleteUser = deleteUser; // (user) -> user
 function findUserById(id) {
 	return new Promise(function(resolve, reject) {
 		User.findOne({ _id: id }, function(err, res) {
+			if(err) reject(err);
+			else resolve(res);
+		});
+	});
+}
+
+function findUserByEmail(email) {
+	return new Promise(function(resolve, reject) {
+		User.findOne({ email: email }, function(err, res) {
 			if(err) reject(err);
 			else resolve(res);
 		});

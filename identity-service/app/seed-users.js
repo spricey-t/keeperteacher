@@ -6,8 +6,10 @@ mongoose.Promise = global.Promise;
 
 // register user model
 require('./users/user.model');
+require('./auth/credential.model');
 
 var userService = require('./users/user.service');
+var credentialService = require('./auth/credential.service');
 
 var admin = {
 	firstName: "John",
@@ -21,19 +23,15 @@ var admin = {
 };
 
 function seedAdmin() {
-	return new Promise(function(resolve, reject) {
-		userService.createUser(admin)
-		.then(function(user) {
-			resolve(user);
-		})
-		.catch(function(err) {
-			reject(err);
+	userService.saveUser(admin)
+	.then(function(user) {
+		credentialService.saveCredsForUser(user.id, admin.password)
+		.then(function(creds) {
 		});
 	});
 }
 
-seedAdmin()
-.then(winston.info('admin user seeded'));
+seedAdmin();
 /*.catch(function(err) {
 	winston.error(err);
 });*/
