@@ -8,6 +8,8 @@ var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 var config = require('config');
 
+var contextPath = '/api/v2'
+var servletPath = '/identityservice'
 
 /* Configuration */
 var app = express();
@@ -41,13 +43,19 @@ userRouter.use(authController.resolveToken);
 userRouter.use(authController.adminAuthz);
 userRouter.get('/', userController.listUsers);
 userRouter.post('/', userController.createUser);
-app.use('/api/users', userRouter);
+app.use(contextPath + servletPath + '/users', userRouter);
 
 /* Auth Routes */
-app.route('/api/authenticate')
+var authRouter = express.Router();
+authRouter.post('/authenticate', authController.authenticate);
+authRouter.get('/token/test', authController.resolveToken, authController.tokenTest);
+/*
+app.route('/authenticate')
 	.post(authController.authenticate);
-app.route('/api/token/test')
+app.route('/token/test')
 	.get(authController.resolveToken, authController.tokenTest);
+*/
+app.use(contextPath + servletPath + '/auth', authRouter);
 
 
 app.listen(port, function() {

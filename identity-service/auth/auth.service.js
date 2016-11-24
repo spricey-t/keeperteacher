@@ -28,7 +28,6 @@ function authenticate(email, password) {
 					else {
 						generateToken(user.id)
 						.then(function(token) {
-							console.log(user);
 							user.password = undefined;
 							resolve({ user: user, token: token });
 						})
