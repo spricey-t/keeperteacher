@@ -6,4 +6,4 @@ docker run -d \
 -e DB_HOST=mongodb://192.168.0.14/keeperteacher \
 -e JWT_SECRET=supersecretjwtthing \
 --name identityservice \
-identityservice:0.1.2
+identityservice:0.1.3

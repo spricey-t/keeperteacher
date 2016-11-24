@@ -3,8 +3,8 @@
 if [[ -n ${DB_HOST+x} ]]
 then
 	sed s@{{SERVER_PORT}}@$SERVER_PORT@g config/production.json | \
-	sed s@{{DB_HOST}}@$DB_HOST@g config/production.json | \
-	sed s@{{JWT_SECRET}}@$JWT_SECRET@g config/production.json > config/default.json
+	sed s@{{DB_HOST}}@$DB_HOST@g | \
+	sed s@{{JWT_SECRET}}@$JWT_SECRET@g > config/default.json
 	node server
 else
 	echo 'environment variable: $DB_HOST missing'
