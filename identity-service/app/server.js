@@ -51,7 +51,7 @@ app.use(contextPath + servletPath + '/users', userRouter);
 /* Auth Routes */
 var authRouter = express.Router();
 authRouter.post('/authenticate', authController.authenticate);
-authRouter.get('/token/test', authController.resolveToken, authController.tokenTest);
+authRouter.get('/token/test', authController.requiresAuthn, authController.resolveToken, authController.tokenTest);
 app.use(contextPath + servletPath + '/auth', authRouter);
 
 
