@@ -51,5 +51,5 @@ exports.resolveToken = function(req, res, next) {
 };
 
 exports.tokenTest = function(req, res, next) {
-	res.status(200).send();
+	res.json(req.bus.user);
 };

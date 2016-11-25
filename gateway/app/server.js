@@ -37,11 +37,11 @@ const resolveToken = (token) => {
 	}
 	try {
 		var res = request('GET', identityserviceHost + contextPath + identityservicePath + '/auth/token/test', {
-			headers: {
+			'headers': {
 				'x-auth-token': token
 			}
 		});
-		return JSON.parse(res.getBody());
+		return JSON.parse(res.getBody('utf8'));
 	} catch(e) {
 		return null;
 	}
