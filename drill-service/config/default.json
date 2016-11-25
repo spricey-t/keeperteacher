@@ -1,0 +1,8 @@
+{
+	"server": {
+		"port": 8081
+	},
+	"db": {
+		"host": "mongodb://localhost/keeperteacher"
+	}
+}
