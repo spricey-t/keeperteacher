@@ -1,0 +1,11 @@
+{
+	"server": {
+		"port": {{SERVER_PORT}}
+	},
+	"identityservice": {
+		"endpoint": "{{IDENTITY_SERVICE_ENDPOINT}}"
+	},
+	"drillservice": {
+		"endpoint": "{{DRILL_SERVICE_ENDPOINT}}"
+	}
+}
