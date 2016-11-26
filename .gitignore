@@ -1,5 +1,5 @@
 node_modules
-./admin-ui/app/client/lib
+admin-ui/app/client/lib
 
 # Files and directories created by pub
 .packages
