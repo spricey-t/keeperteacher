@@ -2,11 +2,13 @@
 
 const winston = require('winston');
 const express = require('express');
+const morgan = require('morgan');
 const config = require('config');
 
 const app = express();
 const port = config.get('server.port');
 
+app.use(morgan('dev'));
 
 app.use(express.static('client/admin_ui/build/web/'));
 app.use('/lib', express.static('client/lib/'));
