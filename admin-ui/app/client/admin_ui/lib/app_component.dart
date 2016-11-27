@@ -3,12 +3,12 @@
 
 import 'package:angular2/core.dart';
 
-import 'package:admin_ui/drill/drill_component.dart';
+import 'package:admin_ui/drill/drill_list_component.dart';
 
 @Component(
     selector: 'my-app',
     styleUrls: const ['app_component.css'],
     templateUrl: 'app_component.html',
-    directives: const [DrillComponent]
+    directives: const [DrillListComponent]
 )
 class AppComponent {}

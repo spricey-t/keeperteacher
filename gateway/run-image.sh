@@ -6,4 +6,4 @@ docker run -d \
 -e IDENTITY_SERVICE_ENDPOINT=http://192.168.0.14:10865 \
 -e DRILL_SERVICE_ENDPOINT=http://192.168.0.14:10866 \
 --name gateway \
-gateway:0.1.0
+gateway:0.1.1

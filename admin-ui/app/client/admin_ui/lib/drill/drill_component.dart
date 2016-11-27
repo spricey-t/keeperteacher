@@ -1,6 +1,7 @@
 
 import 'package:angular2/core.dart';
 
+import 'package:admin_ui/drill/drill.dart';
 
 @Component(
     selector: 'kt-drill',
@@ -8,4 +9,5 @@ import 'package:angular2/core.dart';
 )
 class DrillComponent {
 
+  @Input() Drill drill;
 }
