@@ -15,7 +15,7 @@ class DrillAppComponent {
 
   Drill selectedDrill;
 
-  void onDrillListNotify(var drill) {
+  void onDrillListNotify(Drill drill) {
     selectedDrill = drill;
   }
 }

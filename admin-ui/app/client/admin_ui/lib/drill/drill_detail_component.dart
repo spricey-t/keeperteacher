@@ -5,7 +5,7 @@ import 'package:admin_ui/drill/drill.dart';
 
 @Component(
     selector: 'kt-drill-detail',
-    template: '<div>hello there {{ drill.name }}</div>'
+    templateUrl: 'drill_detail_component.html'
 )
 class DrillDetailComponent {
 
