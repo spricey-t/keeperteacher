@@ -1,0 +1,11 @@
+
+<div class="kt-drill-app">
+    <div class="row">
+        <div class="kt-drill-list-section small-4 columns">
+            <kt-drill-list (drillListNotify)="onDrillListNotify($event)"></kt-drill-list>
+        </div>
+        <div class="small-8 columns">
+            <kt-drill-detail *ngIf="selectedDrill" [drill]="selectedDrill"></kt-drill-detail>
+        </div>
+    </div>
+</div>

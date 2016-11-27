@@ -9,6 +9,7 @@ import 'package:admin_ui/drill/drill_service.dart';
 @Component(
     selector: 'kt-drill-list',
     templateUrl: 'drill_list_component.html',
+    styleUrls: const ['drill_list_component.css'],
     directives: const [DrillComponent],
     providers: const [DrillService]
 )
@@ -16,6 +17,8 @@ class DrillListComponent implements OnInit {
 
   List<Drill> drills;
   final DrillService _drillService;
+  Drill selectedDrill;
+  @Output() EventEmitter<Drill> drillListNotify = new EventEmitter();
 
   DrillListComponent(this._drillService) {
   }
@@ -26,6 +29,12 @@ class DrillListComponent implements OnInit {
         .then((drills) {
           this.drills = drills;
         });
+  }
+
+  void selectDrill(Drill drill) {
+    selectedDrill = drill;
+    print('emitted drill');
+    drillListNotify.emit(drill);
   }
 
   @override

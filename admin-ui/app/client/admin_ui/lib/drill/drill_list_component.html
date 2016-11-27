@@ -1,7 +1,9 @@
 
 
-<div>
-    <ul>
-        <li *ngFor="let drill of drills">{{ drill.name }}</li>
+<div class="kt-drill-list">
+    <ul class="side-nav">
+        <li *ngFor="let drill of drills">
+            <a><kt-drill [drill]="drill" (click)="selectDrill(drill)"></kt-drill></a>
+        </li>
     </ul>
 </div>

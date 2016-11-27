@@ -5,7 +5,8 @@ import 'package:admin_ui/drill/drill.dart';
 
 @Component(
     selector: 'kt-drill',
-    template: '<div>drill</div>'
+    templateUrl: 'drill_component.html',
+    styleUrls: const ['drill_component.css']
 )
 class DrillComponent {
 
