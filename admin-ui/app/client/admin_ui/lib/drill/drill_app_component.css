@@ -1,6 +1,22 @@
 
-.kt-drill-app .kt-drill-list-section {
-    -webkit-box-shadow: 3px 0px 5px -2px rgba(224,215,224,1);
-    -moz-box-shadow: 3px 0px 5px -2px rgba(224,215,224,1);
-    box-shadow: 3px 0px 5px -2px rgba(224,215,224,1);
+.kt-drill-app {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    flex-flow: row;
+    flex: 1;
 }
+
+.kt-drill-app .kt-drill-list-section {
+    flex: 1;
+    overflow-y: scroll;
+}
+
+.kt-drill-app .kt-drill-detail-section {
+    flex: 5;
+}
+

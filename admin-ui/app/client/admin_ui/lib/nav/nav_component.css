@@ -1,0 +1,21 @@
+
+
+.kt-nav {
+    background: black;
+}
+
+.kt-nav .menu {
+    background: black;
+}
+
+.kt-nav .menu-text {
+    color: ghostwhite;
+}
+
+.kt-breadcrumbs {
+    margin-top: 10pt;
+    /*border-bottom: 1px solid gray;*/
+    /*-webkit-box-shadow: 0px 9px 10px -5px rgba(214,214,214,1);*/
+    /*-moz-box-shadow: 0px 9px 10px -5px rgba(214,214,214,1);*/
+    /*box-shadow: 0px 9px 10px -5px rgba(214,214,214,1);*/
+}

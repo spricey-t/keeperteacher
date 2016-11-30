@@ -1,9 +1,9 @@
 
 
 <div class="kt-drill-list">
-    <ul class="side-nav">
-        <li *ngFor="let drill of drills">
-            <a><kt-drill [drill]="drill" (click)="selectDrill(drill)"></kt-drill></a>
+    <ul class="menu  vertical">
+        <li *ngFor="let drill of drills" [class.active]="isSelected(drill)">
+            <a href="javascript:void(0);"><kt-drill [drill]="drill" (click)="selectDrill(drill)"></kt-drill></a>
         </li>
     </ul>
 </div>

@@ -37,6 +37,10 @@ class DrillListComponent implements OnInit {
     drillListNotify.emit(drill);
   }
 
+  bool isSelected(Drill drill) {
+    return drill == selectedDrill;
+  }
+
   @override
   ngOnInit() {
     loadDrills();

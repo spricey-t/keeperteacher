@@ -1,5 +1,9 @@
 
 .kt-drill {
-    height: 40pt;
-    margin-left: 10pt;
+    height: 10pt;
+}
+
+.kt-drill p {
+    font-size: 0.9em;
+    line-height: 10pt;
 }
