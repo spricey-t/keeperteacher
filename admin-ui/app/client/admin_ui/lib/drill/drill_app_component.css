@@ -5,18 +5,14 @@
     left: 0;
     right: 0;
     bottom: 0;
-
-    display: flex;
-    flex-flow: row;
-    flex: 1;
+    /*padding: 10pt;*/
 }
 
 .kt-drill-app .kt-drill-list-section {
-    flex: 1;
-    overflow-y: scroll;
+    height: 100%;
 }
 
 .kt-drill-app .kt-drill-detail-section {
-    flex: 5;
+    height: 100%;
 }
 

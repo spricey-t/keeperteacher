@@ -15,19 +15,26 @@ import 'package:admin_ui/drill/drill_service.dart';
 )
 class DrillListComponent implements OnInit {
 
-  List<Drill> drills;
+  final List<Drill> drills;
   final DrillService _drillService;
   Drill selectedDrill;
   @Output() EventEmitter<Drill> drillListNotify = new EventEmitter();
 
-  DrillListComponent(this._drillService) {
+  DrillListComponent(this._drillService) : drills = new List() {
   }
 
   void loadDrills() {
+    this.drills.clear();
     _drillService
         .listDrills()
         .then((drills) {
-          this.drills = drills;
+          this.drills.addAll(drills);
+          return drills;
+        })
+        .then((drills) {
+          if(drills.isNotEmpty) {
+            selectDrill(drills[0]);
+          }
         });
   }
 
