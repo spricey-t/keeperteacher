@@ -1,11 +1,11 @@
 {
-	"server": {
-		"port": 8080
-	},
-	"db": {
-		"host": "mongodb://localhost/keeperteacher"
-	},
-	"jwt": {
-		"secret": "secretgoeshere"
-	}
+  "server": {
+    "port": 8080
+  },
+  "db": {
+    "host": "mongodb://localhost/keeperteacher"
+  },
+  "jwt": {
+    "secret": "secretgoeshere"
+  }
 }

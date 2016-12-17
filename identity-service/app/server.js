@@ -33,8 +33,8 @@ var userController = require('./users/user.controller');
 var authController = require('./auth/auth.controller');
 
 app.use(function(req, res, next) {
-	req.bus = {};
-	next();
+    req.bus = {};
+    next();
 });
 
 /* User Routes */
@@ -56,5 +56,5 @@ app.use(contextPath + servletPath + '/auth', authRouter);
 
 
 app.listen(port, function() {
-	winston.info('server started on port', port);
+    winston.info('server started on port', port);
 });

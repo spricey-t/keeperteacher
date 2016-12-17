@@ -24,8 +24,8 @@ mongoose.Promise = Promise;
 mongoose.connect(dbHost);
 
 app.use((req, res, next) => {
-	req.bus = {};
-	next();
+    req.bus = {};
+    next();
 });
 
 /* Register Models */
@@ -44,5 +44,5 @@ drillRouter.delete('/:drillId', drillController.deleteDrill);
 app.use(contextPath + servletPath + '/drills', drillRouter);
 
 app.listen(port, () => {
-	winston.info('server started on port', port);
+    winston.info('server started on port', port);
 });

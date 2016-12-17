@@ -12,26 +12,26 @@ var userService = require('./users/user.service');
 var credentialService = require('./auth/credential.service');
 
 var admin = {
-	firstName: "John",
-	lastName: "Smith",
-	email: "john@example.com",
-	password: "password",
-	groups: [
-		"standard",
-		"admin"
-	]
+    firstName: "John",
+    lastName: "Smith",
+    email: "john@example.com",
+    password: "password",
+    groups: [
+        "standard",
+        "admin"
+    ]
 };
 
 function seedAdmin() {
-	userService.saveUser(admin)
-	.then(function(user) {
-		credentialService.saveCredsForUser(user.id, admin.password)
-		.then(function(creds) {
-		});
-	});
+    userService.saveUser(admin)
+    .then(function(user) {
+        credentialService.saveCredsForUser(user.id, admin.password)
+        .then(function(creds) {
+        });
+    });
 }
 
 seedAdmin();
 /*.catch(function(err) {
-	winston.error(err);
+winston.error(err);
 });*/

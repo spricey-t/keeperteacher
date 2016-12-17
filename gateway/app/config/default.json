@@ -1,14 +1,14 @@
 {
-	"server": {
-		"port": 8082
-	},
-	"db": {
-		"host": "mongodb://localhost/keeperteacher"
-	},
-	"identityservice": {
-		"endpoint": "http://localhost:10865"
-	},
-	"drillservice": {
-		"endpoint": "http://localhost:10866"
-	}
+  "server": {
+    "port": 8082
+  },
+  "db": {
+    "host": "mongodb://localhost/keeperteacher"
+  },
+  "identityservice": {
+    "endpoint": "http://localhost:10865"
+  },
+  "drillservice": {
+    "endpoint": "http://localhost:10866"
+  }
 }

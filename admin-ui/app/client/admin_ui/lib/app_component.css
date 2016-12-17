@@ -1,24 +1,3 @@
-:host {
-    font-family: Roboto, Helvetica, Arial, sans-serif;
-}
-
 .kt-app {
-    display: flex;
-    flex-flow: column;
     height: 100%;
-}
-
-.kt-app header {
-    flex: 0 1 auto;
-}
-
-.kt-app section {
-    flex: 1 1 auto;
-    display: flex;
-
-    position: relative;
-}
-
-.kt-app footer {
-    flex: 0 1 10pt;
 }

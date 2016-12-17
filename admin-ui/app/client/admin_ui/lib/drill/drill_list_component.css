@@ -2,12 +2,3 @@
 .kt-drill-list {
     height: 100%;
 }
-
-.kt-drill-list .kt-drill-list-controls {
-}
-
-.kt-drill-list .menu {
-    font-size: 0.9em;
-    overflow-y: scroll;
-    height: calc(100% - 56px);
-}
