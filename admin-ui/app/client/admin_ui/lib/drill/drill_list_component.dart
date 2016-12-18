@@ -31,6 +31,7 @@ class DrillListComponent implements OnInit {
     _drillService
         .listDrills()
         .then((drills) {
+          print(drills[0].schematicUrl);
           this.drills.addAll(drills);
           resetFilteredDrills();
           return drills;

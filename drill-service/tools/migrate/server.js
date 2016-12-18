@@ -69,6 +69,10 @@ const DrillSchema = new mongoose.Schema({
         trim: true,
         required: 'video url is required'
     },
+    schematicUrl: {
+        type: String,
+        trim: true
+    },
     created: {
         type: Date,
         default: Date.now
@@ -99,7 +103,8 @@ for(var i = 0; i < legacyDrills.length; i++) {
     var legacyDrill = legacyDrills[i];
     var drill = new Drill({
         name: legacyDrill.drillName,
-        videoUrl: legacyDrill.url
+        videoUrl: legacyDrill.url,
+        schematicUrl: legacyDrill.schematic
     });
     drill.save((err, persisted) => {
         if(err) console.error(err);

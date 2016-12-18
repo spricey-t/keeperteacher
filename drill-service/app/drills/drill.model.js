@@ -12,6 +12,10 @@ var DrillSchema = new mongoose.Schema({
         trim: true,
         required: 'video url is required'
     },
+    schematicUrl: {
+        type: String,
+        trim: true
+    },
     created: {
         type: Date,
         default: Date.now
