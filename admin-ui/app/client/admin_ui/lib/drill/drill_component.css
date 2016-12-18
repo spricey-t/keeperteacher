@@ -22,7 +22,11 @@
 }
 
 .kt-drill .card-section i {
+}
+
+.kt-drill .kt-thumbnail {
     font-size: 4em;
+    width: 100%;
 }
 
 .kt-drill .card-section p {

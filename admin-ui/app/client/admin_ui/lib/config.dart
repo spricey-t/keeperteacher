@@ -4,7 +4,8 @@ final Config config = new Config._private();
 
 class Config {
 
-  static const String API_HOST = 'http://localhost:10864/api/v2';
+  static const String API_HOST = 'http://192.168.0.14:10864/api/v2';
+//  static const String API_HOST = 'http://localhost:10864/api/v2';
   static const String DRILL_SERVICE_ENDPOINT = '${API_HOST}/drillservice';
 
 
