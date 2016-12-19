@@ -6,7 +6,6 @@ class Drill {
   String schematicUrl;
 
   Drill() {}
-  Drill.withName(this.name);
   Drill.fromMap(Map data) {
     name = data['name'];
     videoUrl = data['videoUrl'];

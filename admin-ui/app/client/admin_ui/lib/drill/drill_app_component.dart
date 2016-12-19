@@ -1,7 +1,7 @@
 
 import 'package:angular2/core.dart';
 
-import 'package:admin_ui/drill/drill_list_component.dart';
+import 'package:admin_ui/drill/list/drill_list_component.dart';
 import 'package:admin_ui/drill/drill.dart';
 
 @Component(

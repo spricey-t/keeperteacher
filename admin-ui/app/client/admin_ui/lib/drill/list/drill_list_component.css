@@ -10,3 +10,8 @@
 .kt-drill-list {
     height: 100%;
 }
+
+.kt-drill-list .kt-drill {
+    padding-left: 5px;
+    padding-right: 5px;
+}
