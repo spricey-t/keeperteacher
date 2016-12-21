@@ -13,15 +13,20 @@ class DrillControlsComponent {
 
   final DrillSearchService _drillSearchService;
 
+  final List<String> searchTerms;
+
   @Input() List<Drill> drills;
+  @Input() List<Drill> filteredDrills;
   @Output() EventEmitter<List<Drill>> filterNotify = new EventEmitter();
 
-  DrillControlsComponent(this._drillSearchService) {
+  DrillControlsComponent(this._drillSearchService) : searchTerms = new List() {
   }
 
 
   void search(String searchText) {
     // todo add debounce
+    searchTerms.clear();
+    searchTerms.addAll(_drillSearchService.getSearchTermsFromSearchText(searchText));
     List<Drill> filtered= _drillSearchService.searchDrills(drills, searchText);
     filterNotify.emit(filtered);
   }

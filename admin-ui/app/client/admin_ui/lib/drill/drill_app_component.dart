@@ -4,6 +4,7 @@ import 'package:admin_ui/drill/drill.dart';
 import 'package:admin_ui/drill/drill_service.dart';
 import 'package:admin_ui/drill/list/drill_list_component.dart';
 import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
 
 @Component(
     selector: 'kt-drill-app',
@@ -15,11 +16,12 @@ import 'package:angular2/core.dart';
 class DrillAppComponent implements OnInit {
 
   final DrillService _drillService;
+  final Router _router;
 
   final List<Drill> drills;
   final List<Drill> filteredDrills;
 
-  DrillAppComponent(this._drillService)
+  DrillAppComponent(this._drillService, this._router)
       : drills = new List(), filteredDrills = new List() {
   }
 
@@ -31,6 +33,13 @@ class DrillAppComponent implements OnInit {
   void setFilteredDrills(List<Drill> newFilteredDrills) {
     filteredDrills.clear();
     filteredDrills.addAll(newFilteredDrills);
+  }
+
+  void onDrillSelected(String drillId) {
+    _router.navigate([
+      'DrillDetail',
+      { 'drillId': drillId }
+    ]);
   }
 
   void _loadDrills() {

@@ -1,11 +1,24 @@
 
 
-<div class="kt-drill-controls row">
-    <div class="columns medium-6">
+<div class="kt-drill-controls">
+    <div class="row">
+        <div class="columns medium-6">
+            displaying {{filteredDrills.length}} drills
+        </div>
+        <div class="columns medium-6">
+            <div class="kt-drill-controls-search">
+                <input type="text" placeholder="search drills" (keyup)="search($event.target.value)"/>
+            </div>
+        </div>
     </div>
-    <div class="columns medium-6">
-        <div class="kt-drill-controls-search">
-            <input type="text" placeholder="search drills" (keyup)="search($event.target.value)"/>
+    <div class="row">
+        <div class="columns medium-6">
+        </div>
+        <div class="columns medium-6">
+            <p *ngIf="!searchTerms.isEmpty" class="kt-drill-controls-search-terms">
+                searching on
+                <span *ngFor="let term of searchTerms" class="label success">{{term}}</span>
+            </p>
         </div>
     </div>
 </div>

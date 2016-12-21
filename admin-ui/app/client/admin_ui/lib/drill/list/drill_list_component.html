@@ -18,8 +18,8 @@
         <!--<input type="text" placeholder="search drills" (keyup)="search($event.target.value)"/>-->
     <!--</div>-->
 <!--</div>-->
-<div class="kt-drill-list row small-up-2 medium-up-3 large-up-4">
+<div class="kt-drill-list row small-up-1 medium-up-3 large-up-4">
     <div *ngFor="let drill of drills" class="kt-drill column column-block">
-        <kt-drill [drill]="drill"></kt-drill>
+        <kt-drill [drill]="drill" (click)="drillSelected(drill.id)"></kt-drill>
     </div>
 </div>

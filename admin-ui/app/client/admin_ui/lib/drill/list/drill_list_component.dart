@@ -14,9 +14,14 @@ import 'package:angular2/core.dart';
 class DrillListComponent implements OnInit {
 
   @Input() List<Drill> drills;
+  @Output() EventEmitter<String> drillNotify = new EventEmitter();
 
   @override
   ngOnInit() {
     print(drills);
+  }
+
+  void drillSelected(String drillId) {
+    drillNotify.emit(drillId);
   }
 }

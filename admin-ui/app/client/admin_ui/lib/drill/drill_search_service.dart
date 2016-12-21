@@ -5,12 +5,20 @@ import 'package:admin_ui/drill/drill.dart';
 @Injectable()
 class DrillSearchService {
 
+  List<String> getSearchTermsFromSearchText(String searchText) {
+    return searchText.trim().split(" ").map((term) {
+        return term.toLowerCase();
+    }).toList()
+      ..retainWhere((term) {
+      return term != null && term.isNotEmpty;
+    });
+  }
 
   List<Drill> searchDrills(final List<Drill> sourceDrills, final String searchString) {
     if(searchString == null || searchString.isEmpty || sourceDrills.isEmpty) {
       return sourceDrills;
     }
-    List<String> searchTerms = searchString.trim().split(" ").map((term) { return term.toLowerCase(); }).toList();
+    List<String> searchTerms = getSearchTermsFromSearchText(searchString);
     return _filterDrillsOnSearchTerms(sourceDrills, searchTerms);
   }
 
