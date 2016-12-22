@@ -1,25 +1,9 @@
 
-
-<!--<div class="kt-drill-list-controls row">-->
-    <!--<div class="medium-6 columns">-->
-        <!--<div class="small-4">-->
-            <!--<div class="card text-center" style="background: #2980b9; color: #ecf0f1">-->
-                <!--<div class="card-section">-->
-                    <!--<div class="stat">{{filteredDrills.length}}</div>-->
-                <!--</div>-->
-                <!--<div class="card-section">-->
-                    <!--<p *ngIf="filteredDrills.length != 1">drills</p>-->
-                    <!--<p *ngIf="filteredDrills.length == 1">drill</p>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="medium-6 columns">-->
-        <!--<input type="text" placeholder="search drills" (keyup)="search($event.target.value)"/>-->
-    <!--</div>-->
-<!--</div>-->
 <div class="kt-drill-list row small-up-1 medium-up-3 large-up-4">
     <div *ngFor="let drill of drills" class="kt-drill column column-block">
-        <kt-drill [drill]="drill" (click)="drillSelected(drill.id)"></kt-drill>
+        <kt-drill
+                [drill]="drill"
+                (click)="drillSelected(drill.id)">
+        </kt-drill>
     </div>
 </div>

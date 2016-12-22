@@ -1,41 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>admin_ui</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--<link type="text/css" rel="stylesheet" href="/lib/foundation-sites/dist/css/foundation-flex.css"/>-->
-    <link type="text/css" rel="stylesheet" href="/lib/foundation-sites/dist/css/foundation.css"/>
-    <link type="text/css" rel="stylesheet" href="/lib/foundation-icon-fonts/foundation-icons.css"/>
-      <style>body { background: #444144; }</style>
+    <head>
+        <title>admin_ui</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link type="text/css" rel="stylesheet" href="/lib/foundation-sites/dist/css/foundation-flex.css"/>
+        <!--<link type="text/css" rel="stylesheet" href="/lib/foundation-sites/dist/css/foundation.css"/>-->
+        <link type="text/css" rel="stylesheet" href="/lib/foundation-icon-fonts/foundation-icons.css"/>
+        <link type="text/css" rel="stylesheet" href="/packages/admin_ui/styles.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
 
-    <script defer src="/main.dart" type="application/dart"></script>
-    <script defer src="/packages/browser/dart.js"></script>
-      <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.min.js"></script>
-    <!--<script defer src="/lib/jquery/dist/jquery.js"></script>-->
-    <!--<script defer src="/lib/foundation-sites/dist/foundation.js"></script>-->
-  </head>
-  <body>
-    <my-app>Loading...</my-app>
-
-    <script>
-        function playVideo(elementId, videoUrl) {
-            setTimeout(function() {
-                wat(elementId, videoUrl);
-            }, 2000);
-        }
-        function wat(elementId, videoUrl) {
-            console.log('attempting to play video: ' + videoUrl);
-            if(Hls.isSupported()) {
-                var video = document.getElementById(elementId);
-                console.log(video);
-                var hls = new Hls();
-                hls.loadSource(videoUrl);
-                hls.attachMedia(video);
-                hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                    video.play();
-                });
-            }
-        }
-    </script>
-  </body>
+        <script defer src="/lib/hls.js/dist/hls.js"></script>
+        <script defer src="/main.dart" type="application/dart"></script>
+        <script defer src="/packages/browser/dart.js"></script>
+        <script defer src="/packages/admin_ui/hlswrapper.js"></script>
+        <!--<script defer src="/lib/jquery/dist/jquery.js"></script>-->
+        <!--<script defer src="/lib/foundation-sites/dist/foundation.js"></script>-->
+    </head>
+    <body>
+        <my-app>Loading...</my-app>
+    </body>
 </html>

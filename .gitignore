@@ -1,6 +1,8 @@
 node_modules
 admin-ui/app/client/lib
 
+external
+
 # Files and directories created by pub
 .packages
 .pub/

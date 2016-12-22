@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "foundation-sites": "^6.3.0",
-    "foundation-icon-fonts": "*"
+    "foundation-icon-fonts": "*",
+    "hls.js": "latest"
   }
 }

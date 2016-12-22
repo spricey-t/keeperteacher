@@ -1,17 +1,9 @@
 
-.kt-drill-list-controls input {
-    background: #5c595c;
-    -webkit-box-shadow: 0px 0px 10px 0px #1a1a1a;
-    -moz-box-shadow:    0px 0px 10px 0px #1a1a1a;
-    box-shadow:         0px 0px 10px 0px #1a1a1a;
-    border: none;
+.kt-drill-list-controls {
 }
 
 .kt-drill-list {
-    height: 100%;
 }
 
 .kt-drill-list .kt-drill {
-    padding-left: 5px;
-    padding-right: 5px;
 }

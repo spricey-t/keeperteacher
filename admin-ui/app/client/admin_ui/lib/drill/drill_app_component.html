@@ -1,13 +1,16 @@
 
 <div class="kt-drill-app">
-    <div class="kt-drill-controls-section column small-12 expanded">
+    <div class="kt-drill-controls-section">
         <kt-drill-controls
                 [drills]="drills"
                 [filteredDrills]="filteredDrills"
                 (filterNotify)="setFilteredDrills($event)">
         </kt-drill-controls>
     </div>
-    <div class="kt-drill-list-section row column small-12 expanded">
-        <kt-drill-list [drills]="filteredDrills" (drillNotify)="onDrillSelected($event)"></kt-drill-list>
+    <div class="kt-drill-list-section column small-12 medium-8 medium-centered">
+        <kt-drill-list
+                [drills]="filteredDrills"
+                (drillNotify)="onDrillSelected($event)">
+        </kt-drill-list>
     </div>
 </div>

@@ -1,16 +1,23 @@
 
 
 <div class="kt-drill-controls">
-    <div class="row">
-        <div class="columns medium-6">
-            displaying {{filteredDrills.length}} drills
+    <div class="kt-drill-menu row expanded align-bottom">
+        <div class="columns medium-8">
+            <h5 style="font-weight: 300; color: white;">DRILLS</h5>
         </div>
-        <div class="columns medium-6">
-            <div class="kt-drill-controls-search">
-                <input type="text" placeholder="search drills" (keyup)="search($event.target.value)"/>
-            </div>
+        <div class="columns medium-4">
+            <input type="search" placeholder="search drills" (keyup)="search($event.target.value)"/>
         </div>
     </div>
+    <!--<div class="row align-middle">-->
+        <!--<div class="columns medium-6">-->
+            <!--<span class="badge primary">{{filteredDrills.length}}</span>-->
+            <!--drills-->
+        <!--</div>-->
+        <!--<div class="columns medium-6">-->
+            <!--<input type="text" placeholder="search drills" (keyup)="search($event.target.value)"/>-->
+        <!--</div>-->
+    <!--</div>-->
     <div class="row">
         <div class="columns medium-6">
         </div>
