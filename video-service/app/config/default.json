@@ -1,0 +1,15 @@
+
+{
+  "server": {
+    "port": 8089
+  },
+  "uploadDir": "./uploads",
+  "aws": {
+    "s3": {
+      "bucket": "keeper-teacher-admin-input"
+    },
+    "elasticTranscoder": {
+      "pipelineId": "1450324759499-wnzqzx"
+    }
+  }
+}

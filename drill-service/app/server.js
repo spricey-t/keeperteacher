@@ -7,8 +7,8 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const config = require('config');
 
-var contextPath = '/api/v2'
-var servletPath = '/drillservice'
+const contextPath = '/api/v2';
+const servletPath = '/drillservice';
 
 /* Configuration */
 const app = express();
