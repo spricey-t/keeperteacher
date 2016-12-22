@@ -7,9 +7,19 @@
             </a>
         </div>
     </div>
-    <div class="row" *ngIf="drill != null">
-        <div class="columns small-10">
-            <h1 style="color: #f0f0f0;">{{ drill.name }}</h1>
+    <div *ngIf="drill != null">
+        <div class="row">
+            <div class="columns small-12">
+                <h1 style="color: #f0f0f0;">{{ drill.name }}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns medium-4">
+                <textarea #objective>{{ drill.objective }}</textarea>
+            </div>
+            <div class="columns medium-8">
+                <video src="{{ drill.videoUrl }}"></video>
+            </div>
         </div>
     </div>
 </div>

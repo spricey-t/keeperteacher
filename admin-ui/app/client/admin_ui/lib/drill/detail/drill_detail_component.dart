@@ -14,7 +14,7 @@ import 'package:admin_ui/drill/drill.dart';
 //    directives: const [],
     providers: const [DrillService]
 )
-class DrillDetailComponent implements OnInit {
+class DrillDetailComponent implements OnInit, AfterViewInit {
 
   final DrillService _drillService;
   final RouteParams _routeParams;
@@ -22,6 +22,7 @@ class DrillDetailComponent implements OnInit {
   final Router _router;
   String drillId;
   Drill drill;
+  @ViewChild('objective') ElementRef objectiveElement;
 
   DrillDetailComponent(this._drillService, this._routeParams, this._location, this._router);
 
@@ -36,6 +37,11 @@ class DrillDetailComponent implements OnInit {
   @override
   ngOnInit() {
     _loadDrill();
+  }
+
+  @override
+  ngAfterViewInit() {
+    print(objectiveElement);
   }
 
   void _loadDrill() {

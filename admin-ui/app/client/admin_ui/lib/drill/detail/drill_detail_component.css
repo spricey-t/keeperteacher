@@ -5,3 +5,7 @@
 
 .kt-drill-detail span {
 }
+
+.kt-drill-detail video {
+    width: 100%;
+}
