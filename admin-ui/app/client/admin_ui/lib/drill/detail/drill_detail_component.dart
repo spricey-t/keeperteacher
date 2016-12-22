@@ -1,17 +1,19 @@
 
+import 'dart:js';
 import 'dart:async';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 import 'package:angular2/platform/common.dart';
 import 'package:admin_ui/drill/drill_service.dart';
 import 'package:admin_ui/drill/drill.dart';
+import 'package:admin_ui/video/video_component.dart';
 
 
 @Component(
     selector: 'kt-drill-detail',
     templateUrl: 'drill_detail_component.html',
     styleUrls: const ['drill_detail_component.css'],
-//    directives: const [],
+    directives: const [VideoComponent],
     providers: const [DrillService]
 )
 class DrillDetailComponent implements OnInit, AfterViewInit {
@@ -22,9 +24,9 @@ class DrillDetailComponent implements OnInit, AfterViewInit {
   final Router _router;
   String drillId;
   Drill drill;
-  @ViewChild('objective') ElementRef objectiveElement;
 
-  DrillDetailComponent(this._drillService, this._routeParams, this._location, this._router);
+  DrillDetailComponent(this._drillService, this._routeParams, this._location, this._router) {
+  }
 
   void goBack() => _location.back();
 
@@ -41,12 +43,12 @@ class DrillDetailComponent implements OnInit, AfterViewInit {
 
   @override
   ngAfterViewInit() {
-    print(objectiveElement);
   }
 
   void _loadDrill() {
     _drillService.getDrill(_routeParams.get('drillId')).then((drill) {
       this.drill = drill;
+      return drill;
     });
   }
 }
