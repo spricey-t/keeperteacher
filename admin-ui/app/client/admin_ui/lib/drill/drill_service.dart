@@ -23,4 +23,12 @@ class DrillService {
           return drills;
         });
   }
+
+  Future<Drill> getDrill(String drillId) async {
+    return await HttpRequest
+        .getString('${Config.DRILL_SERVICE_ENDPOINT}/drills/${drillId}')
+        .then((result) {
+          return new Drill.fromMap(JSON.decode(result));
+        });
+  }
 }

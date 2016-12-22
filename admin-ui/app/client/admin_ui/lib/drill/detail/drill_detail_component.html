@@ -1,4 +1,15 @@
 
-<div>
-    <h1>hello world! {{drillId}}</h1>
+<div class="kt-drill-detail">
+    <div class="row">
+        <div class="columns small-2 align-self-middle">
+            <a (click)="returnToDrills()">
+                < drills
+            </a>
+        </div>
+    </div>
+    <div class="row" *ngIf="drill != null">
+        <div class="columns small-10">
+            <h1 style="color: #f0f0f0;">{{ drill.name }}</h1>
+        </div>
+    </div>
 </div>

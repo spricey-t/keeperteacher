@@ -64,6 +64,14 @@ const DrillSchema = new mongoose.Schema({
         trim: true,
         required: 'drill name is required'
     },
+    category: {
+        type: String,
+        trim: true
+    },
+    objective: {
+        type: String,
+        trim: true
+    },
     videoUrl: {
         type: String,
         trim: true,
@@ -91,6 +99,7 @@ var res = request('POST', LEGACY_API + '/authenticate', {
 });
 
 var token = JSON.parse(res.body).token;
+console.log('token: ' + token);
 
 res = request('GET', LEGACY_API + '/api/drills', {
     headers: {
@@ -103,6 +112,8 @@ for(var i = 0; i < legacyDrills.length; i++) {
     var legacyDrill = legacyDrills[i];
     var drill = new Drill({
         name: legacyDrill.drillName,
+        category: legacyDrill.category,
+        objective: legacyDrill.objective,
         videoUrl: legacyDrill.url,
         schematicUrl: legacyDrill.schematic
     });
