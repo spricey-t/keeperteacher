@@ -1,6 +1,6 @@
 {
   "name": "gateway",
-  "version": "0.1.1",
+  "version": "0.2.5",
   "description": "api gateway",
   "main": "server.js",
   "scripts": {
@@ -16,6 +16,7 @@
     "express-http-proxy": "^0.10.1",
     "method-override": "^2.3.7",
     "morgan": "^1.7.0",
+    "multer": "^1.2.1",
     "path-match": "^1.2.4",
     "sync-request": "^3.0.1",
     "winston": "^2.3.0"

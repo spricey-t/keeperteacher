@@ -5,8 +5,6 @@ const express = require('express');
 const morgan = require('morgan');
 const multer = require('multer');
 const config = require('config');
-const bodyParser = require('body-parser');
-const methodOverride = require('method-override');
 
 const contextPath = '/api/v2';
 const servletPath = '/videoservice';
@@ -18,9 +16,6 @@ const uploadDir = config.get('uploadDir');
 const upload = multer({ dest: uploadDir });
 
 app.use(morgan('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(methodOverride());
 
 /* Load Controllers */
 const videoController = require('./videos/video.controller');

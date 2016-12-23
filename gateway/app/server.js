@@ -3,8 +3,6 @@
 const winston = require('winston');
 const express = require('express');
 const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const methodOverride = require('method-override');
 const config = require('config');
 const proxy = require('express-http-proxy');
 const cors = require('cors');
@@ -19,18 +17,16 @@ const route = require('path-match')({
 const contextPath = '/api/v2';
 const identityservicePath = '/identityservice';
 const drillservicePath = '/drillservice';
+const videoservicePath = '/videoservice';
 
 const app = express();
 const port = config.get('server.port');
 const identityserviceHost = config.get('identityservice.endpoint');
 const drillserviceHost = config.get('drillservice.endpoint');
+const videoserviceHost = config.get('videoservice.endpoint');
 
 app.use(morgan('dev'));
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(methodOverride());
-
 
 const resolveToken = (token) => {
     if(!token) {
@@ -81,6 +77,33 @@ app.use(contextPath + drillservicePath, proxy(drillserviceHost, {
     },
     forwardPath: (req, res) => {
         return contextPath + drillservicePath + url.parse(req.url).path;
+    },
+    decorateRequest: (proxyReq, origReq) => {
+        return proxyReq;
+    }
+}));
+
+/* videoservice rules */
+app.use(contextPath + videoservicePath, proxy(videoserviceHost, {
+    reqAsBuffer: true,
+    limit: '250mb',
+    reqBodyEncoding: null,
+    filter: (req, res) => {
+        console.log('testing req: ' + JSON.stringify(req.headers));
+        var user = resolveToken(req.headers['x-auth-token']);
+        var path = url.parse(req.url).path;
+
+        if(
+            route('/videos')(path) && !userAuthorized(user, 'admin')
+        ) {
+            res.status(403).send({ err: 'unauthorized' });
+            return false;
+        } else {
+            return true;
+        }
+    },
+    forwardPath: (req, res) => {
+        return contextPath + videoservicePath + url.parse(req.url).path;
     },
     decorateRequest: (proxyReq, origReq) => {
         return proxyReq;

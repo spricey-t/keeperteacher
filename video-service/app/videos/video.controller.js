@@ -1,6 +1,7 @@
 
 
 const winston = require('winston');
+const fs = require('fs');
 const videoService = require('./video.service');
 
 exports.uploadVideo = (req, res, next) => {
@@ -22,7 +23,12 @@ exports.uploadVideo = (req, res, next) => {
         })
         .then(videoService.transcodeVideo)
         .catch((err) => {
-            console.error('upload failed', err);
+            winston.error('upload failed', err);
+        })
+        .then(() => {
+            fs.unlink(req.file.path, (err, data) => {
+                if(err) winston.error('failed to remove cached file', err);
+            });
         });
 
     res.sendStatus(202);

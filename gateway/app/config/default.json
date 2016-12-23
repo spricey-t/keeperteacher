@@ -10,5 +10,8 @@
   },
   "drillservice": {
     "endpoint": "http://localhost:10866"
+  },
+  "videoservice": {
+    "endpoint": "http://localhost:10867"
   }
 }
