@@ -1,5 +1,23 @@
 
 <div class="kt-drill-app">
+    <div class="row expanded align-top small-collapse">
+        <!--<section class="columns medium-1">-->
+            <!--<div class="kt-drill-categories">-->
+            <!--</div>-->
+        <!--</section>-->
+        <section class="columns medium-3">
+            <div class="kt-drill-list row expanded">
+                <div class="kt-drill small-12" *ngFor="let drill of drills">
+                    <p>{{drill.name}}</p>
+                </div>
+            </div>
+        </section>
+        <section class="columns medium-9">
+            <div class="kt-drill-detail">
+            </div>
+        </section>
+    </div>
+    <!--
     <div class="kt-drill-controls-section">
         <kt-drill-controls
                 [drills]="drills"
@@ -13,4 +31,5 @@
                 (drillNotify)="onDrillSelected($event)">
         </kt-drill-list>
     </div>
+    -->
 </div>

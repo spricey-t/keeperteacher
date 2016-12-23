@@ -4,9 +4,15 @@
   background: $kt-background;
 }
 
-.kt-drill-app .kt-drill-list-section {
+.kt-drill-list {
+  background: $kt-drill-list-background;
 }
 
-.kt-drill-app .kt-drill-detail-section {
+.kt-drill-list .kt-drill {
+  height: 20pt;
+  line-height: 20pt;
 }
 
+.kt-drill-detail {
+  background: $kt-drill-detail-background;
+}
