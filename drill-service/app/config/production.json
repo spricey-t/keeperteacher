@@ -4,5 +4,10 @@
   },
   "db": {
     "host": "{{DB_HOST}}"
-  }
+  },
+  "legacy": {
+    "endpoint": "{{LEGACY_ENDPOINT}}",
+    "email": "{{LEGACY_EMAIL}}",
+    "password": "{{LEGACY_PASSWORD}}"
+}
 }

@@ -4,5 +4,10 @@
   },
   "db": {
     "host": "mongodb://localhost/keeperteacher"
+  },
+  "legacy": {
+    "endpoint": "https://apps.keeperteacher.com:10865",
+    "email": "",
+    "password": ""
   }
 }

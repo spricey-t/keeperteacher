@@ -2,6 +2,7 @@
 
 const winston = require('winston');
 const drillService = require('./drill.service');
+const legacyAdapter = require('./legacy.adapter');
 
 
 exports.listDrills = (req, res, next) => {
@@ -28,7 +29,13 @@ exports.findDrillById = (req, res, next) => {
 exports.createDrill = (req, res, next) => {
     drillService.saveDrill(req.body)
     .then(drill => {
-        res.json(drill);
+        if(req.query.legacy) {
+            legacyAdapter.createLegacyDrill(drill).then(legacyDrill => {
+                res.json(drill);
+            });
+        } else {
+            res.json(drill);
+        }
     })
     .catch(err => {
         res.status(400).send(err);
