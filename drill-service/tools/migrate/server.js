@@ -64,6 +64,10 @@ const DrillSchema = new mongoose.Schema({
         trim: true,
         required: 'drill name is required'
     },
+    legacyId: {
+        type: String,
+        trim: true
+    },
     category: {
         type: String,
         trim: true
@@ -112,6 +116,7 @@ for(var i = 0; i < legacyDrills.length; i++) {
     var legacyDrill = legacyDrills[i];
     var drill = new Drill({
         name: legacyDrill.drillName,
+        legacyId: legacyDrill._id,
         category: legacyDrill.category,
         objective: legacyDrill.objective,
         videoUrl: legacyDrill.url,

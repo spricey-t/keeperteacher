@@ -27,19 +27,24 @@ exports.findDrillById = (req, res, next) => {
 };
 
 exports.createDrill = (req, res, next) => {
-    drillService.saveDrill(req.body)
-    .then(drill => {
-        if(req.query.legacy) {
-            legacyAdapter.createLegacyDrill(drill).then(legacyDrill => {
-                res.json(drill);
-            });
-        } else {
+    var saveDrill = function() {
+        drillService.saveDrill(req.body).then(drill => {
             res.json(drill);
-        }
-    })
-    .catch(err => {
-        res.status(400).send(err);
-    });
+        }).catch(err => {
+            res.status(400).send(err);
+        });
+    };
+
+    if(req.query.legacy) {
+        legacyAdapter.createLegacyDrill(req.body).then(legacyDrill => {
+            req.body.legacyId = legacyDrill._id;
+            saveDrill();
+        }).catch(err => {
+            res.status(400).send(err);
+        });
+    } else {
+        saveDrill();
+    }
 };
 
 exports.updateDrill = (req, res, next) => {

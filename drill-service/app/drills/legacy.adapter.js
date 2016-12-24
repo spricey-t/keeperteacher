@@ -1,5 +1,5 @@
 
-const request = require('sync-request');
+const request = require('request');
 const config = require('config');
 
 const legacyApi = config.get('legacy.endpoint');
@@ -7,45 +7,59 @@ const email = config.get('legacy.email');
 const password = config.get('legacy.password');
 
 exports.createLegacyDrill = createLegacyDrill;
+exports.deleteLegacyDrill = deleteLegacyDrill;
 
 
 
 function createLegacyDrill(drill) {
     return new Promise((resolve, reject) => {
         getLegacyToken().then((token) => {
-            let res = request('POST', legacyApi + "/api/drills", {
+            request({
+                url: legacyApi + '/api/drills',
+                method: 'POST',
                 headers: {
                     'x-access-token': token
                 },
-                json: {
+                json: true,
+                body: {
                     drillName: drill.name,
                     objective: drill.objective,
                     category: drill.category,
                     url: drill.videoUrl,
-                    schematic: drill.schematicUrl
+                    schematic: drill.schematicUrl || "http://.com"
+                }
+            }, (err, response, body) => {
+                if(err || response.statusCode >= 300) {
+                    reject({ err: 'failed to create legacy drill ' + response.statusCode, body: body })
+                } else {
+                    resolve(body);
                 }
             });
-            if(res.statusCode >= 300) {
-                reject({ err: 'failed to create legacy drill ' + res.statusCode});
-            } else {
-                resolve(JSON.parse(res.getBody()));
-            }
+        }).catch(err => {
+            reject(err);
         });
     });
 }
 
+function deleteLegacyDrill(drillId) {
+}
+
 function getLegacyToken() {
     return new Promise((resolve, reject) => {
-        var res = request('POST', legacyApi + "/authenticate", {
-            json: {
+        request({
+            url: legacyApi + '/authenticate',
+            method: 'POST',
+            json: true,
+            body: {
                 email: email,
                 password: password
             }
+        }, (err, response, body) => {
+            if(err || response.statusCode >= 300) {
+                reject({ err: 'failed to get token ' + response.statusCode + ' ' + err });
+            } else {
+                resolve(body.token);
+            }
         });
-        if(res.statusCode >= 300) {
-            reject({ err: 'failed to get token: ' + res.statusCode });
-        } else {
-            resolve(JSON.parse(res.getBody()).token);
-        }
     });
 }

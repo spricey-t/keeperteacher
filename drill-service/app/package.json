@@ -1,6 +1,6 @@
 {
   "name": "drill-service",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "manages drill data",
   "main": "server.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "method-override": "^2.3.7",
     "mongoose": "^4.7.0",
     "morgan": "^1.7.0",
-    "sync-request": "^3.0.1",
+    "request": "^2.79.0",
     "winston": "^2.3.0"
   }
 }

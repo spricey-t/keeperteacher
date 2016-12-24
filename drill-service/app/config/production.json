@@ -9,5 +9,5 @@
     "endpoint": "{{LEGACY_ENDPOINT}}",
     "email": "{{LEGACY_EMAIL}}",
     "password": "{{LEGACY_PASSWORD}}"
-}
+  }
 }

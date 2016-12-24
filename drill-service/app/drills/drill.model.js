@@ -7,13 +7,19 @@ var DrillSchema = new mongoose.Schema({
         trim: true,
         required: 'drill name is required'
     },
-    category: {
+    legacyId: {
         type: String,
         trim: true
     },
+    category: {
+        type: String,
+        trim: true,
+        required: 'category is required'
+    },
     objective: {
         type: String,
-        trim: true
+        trim: true,
+        required: 'objective is required'
     },
     videoUrl: {
         type: String,
