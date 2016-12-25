@@ -52,8 +52,24 @@ exports.updateDrill = (req, res, next) => {
     .then(drill => {
         return new Promise(function(resolve, reject) {
             drill.name = req.body.name || drill.name;
-            drill.url = req.body.url || drill.url;
+            drill.category = req.body.category || drill.category;
+            drill.objective = req.body.objective || drill.objective;
+            drill.schematicUrl = req.body.schematicUrl || drill.schematicUrl;
+            drill.videoUrl = req.body.videoUrl || drill.videoUrl;
             resolve(drill);
+        });
+    })
+    .then(drill => {
+        return new Promise((resolve, reject) => {
+            if(req.query.legacy && drill.legacyId) {
+                legacyAdapter.updateLegacyDrill(drill).then((legacyDrill) => {
+                    resolve(drill);
+                }).catch(err => {
+                    reject(err);
+                });
+            } else {
+                resolve(drill);
+            }
         });
     })
     .then(drillService.saveDrill)
@@ -68,6 +84,19 @@ exports.updateDrill = (req, res, next) => {
 
 exports.deleteDrill = (req, res, next) => {
     drillService.findDrillById(req.params.drillId)
+    .then((drill) => {
+        return new Promise((resolve, reject) => {
+            if(req.query.legacy && drill.legacyId) {
+                legacyAdapter.deleteLegacyDrill(drill.legacyId).then((legacyDrill) => {
+                    resolve(drill);
+                }).catch(err => {
+                    reject(err);
+                });
+            } else {
+                resolve(drill);
+            }
+        });
+    })
     .then(drillService.deleteDrill)
     .then(drill => {
         res.json(drill);
