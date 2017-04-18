@@ -1,0 +1,7 @@
+
+version: '3'
+services:
+  drills:
+    image: kt-drills:latest
+    ports:
+      - "10444:10444"

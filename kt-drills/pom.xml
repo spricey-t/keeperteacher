@@ -16,6 +16,8 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <docker.spotify.version>0.4.11</docker.spotify.version>
+        <image.name>kt-drills</image.name>
 
         <h2.version>1.4.193</h2.version>
         <postgresql.version>9.1-901-1.jdbc4</postgresql.version>
@@ -62,6 +64,28 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker.spotify.version}</version>
+                <configuration>
+                    <imageName>${image.name}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <imageTags>
+                        <imageTag>${project.version}</imageTag>
+                        <imageTag>latest</imageTag>
+                    </imageTags>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
         </plugins>
     </build>
