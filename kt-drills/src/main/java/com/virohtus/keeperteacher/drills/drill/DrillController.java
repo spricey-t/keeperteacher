@@ -1,5 +1,6 @@
 package com.virohtus.keeperteacher.drills.drill;
 
+import com.virohtus.keeperteacher.drills.base.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,6 +30,30 @@ public class DrillController {
     public Drill create(
             @Valid @RequestBody Drill drill
     ) {
-        return drillService.save(drill);
+        drill.setId(null);
+        return drillService.create(drill);
+    }
+
+    @GetMapping("{drillId}")
+    public Drill read(
+            @PathVariable String drillId
+    ) throws ResourceNotFoundException {
+        return drillService.findById(drillId);
+    }
+
+    @PutMapping("{drillId}")
+    public Drill update (
+            @PathVariable String drillId,
+            @Valid @RequestBody Drill drill
+    ) throws ResourceNotFoundException {
+        drill.setId(drillId);
+        return drillService.update(drill);
+    }
+
+    @DeleteMapping("{drillId}")
+    public Drill delete(
+            @PathVariable String drillId
+    ) throws ResourceNotFoundException {
+        return drillService.delete(drillId);
     }
 }
