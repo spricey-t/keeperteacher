@@ -1,5 +1,6 @@
 package com.virohtus.keeperteacher.drills.base;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.GeneratedValue;
@@ -23,6 +24,7 @@ public class Resource {
         this.id = id;
     }
 
+    @JsonIgnore
     public int get_version() {
         return _version;
     }

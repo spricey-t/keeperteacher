@@ -26,4 +26,8 @@ public class DrillService {
     public List<Drill> findAll() {
         return drillDao.findAll();
     }
+
+    public Drill save(Drill drill) {
+        return drillDao.save(drill);
+    }
 }

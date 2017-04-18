@@ -3,9 +3,9 @@ package com.virohtus.keeperteacher.drills.drill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/drills")
@@ -18,10 +18,17 @@ public class DrillController {
         this.drillService = drillService;
     }
 
-    @GetMapping("")
+    @GetMapping
     public Page<Drill> findAllPaged(
             Pageable pageable
     ) {
         return drillService.findAllPaged(pageable);
+    }
+
+    @PostMapping
+    public Drill create(
+            @Valid @RequestBody Drill drill
+    ) {
+        return drillService.save(drill);
     }
 }
