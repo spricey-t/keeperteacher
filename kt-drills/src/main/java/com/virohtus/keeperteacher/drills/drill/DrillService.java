@@ -53,7 +53,6 @@ public class DrillService {
         return drill;
     }
 
-
     private void guardDrillExists(String drillId) throws ResourceNotFoundException {
         if(StringUtils.isEmpty(drillId) || !drillDao.exists(drillId)) {
             throw new ResourceNotFoundException(drillId);
