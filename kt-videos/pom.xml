@@ -11,13 +11,13 @@
     </parent>
 
     <groupId>com.virohtus</groupId>
-    <artifactId>kt-drills</artifactId>
+    <artifactId>kt-videos</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
         <java.version>1.8</java.version>
         <docker.spotify.version>0.4.11</docker.spotify.version>
-        <image.name>kt-drills</image.name>
+        <image.name>kt-videos</image.name>
 
         <h2.version>1.4.193</h2.version>
         <postgresql.version>9.1-901-1.jdbc4</postgresql.version>
