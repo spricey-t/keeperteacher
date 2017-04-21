@@ -46,35 +46,14 @@ public class StorageService {
                 .build();
     }
 
-    public void store(MultipartFile file) throws IOException {
-        long totalBytes = file.getSize();
+    public void store(String key, MultipartFile file, ProgressListener progressListener) throws IOException, InterruptedException {
         ObjectMetadata objectMetadata = new ObjectMetadata();
-        objectMetadata.setContentLength(totalBytes);
-        PutObjectRequest request = new PutObjectRequest(
-                bucketName, file.getOriginalFilename(),
-                file.getInputStream(), objectMetadata
-        );
+        objectMetadata.setContentLength(file.getSize());
+        PutObjectRequest request = new PutObjectRequest(bucketName, key, file.getInputStream(), objectMetadata);
         TransferManager transferManager = TransferManagerBuilder.standard()
                 .withS3Client(amazonS3Client)
                 .build();
-        AtomicLong bytesTransferred = new AtomicLong(0);
         Upload upload = transferManager.upload(request);
-        upload.addProgressListener((ProgressListener) progressEvent -> {
-            switch (progressEvent.getEventType()) {
-                case TRANSFER_STARTED_EVENT:
-                    log.info("transfer started");
-                    return;
-                case TRANSFER_COMPLETED_EVENT:
-                    log.info("transfer completed");
-                    return;
-                case TRANSFER_FAILED_EVENT:
-                    log.info("transfer failed");
-                    return;
-            }
-            if(progressEvent.getEventType().isByteCountEvent()) {
-                bytesTransferred.addAndGet(progressEvent.getBytesTransferred());
-                log.info(String.format("upload - %d", (int) ((bytesTransferred.get() * 100.0) / totalBytes)));
-            }
-        });
+        upload.addProgressListener(progressListener);
     }
 }
